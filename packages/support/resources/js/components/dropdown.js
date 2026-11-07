@@ -259,13 +259,15 @@ export default ({ isMenu = true } = {}) => ({
             return this.activeTrigger
         }
 
-        if (this.activeTrigger) {
+        const trigger = visibleTrigger ?? triggers[0]
+
+        if (this.activeTrigger && this.activeTrigger !== trigger) {
             this.activeTrigger.removeAttribute('aria-controls')
             this.activeTrigger.removeAttribute('aria-expanded')
             this.activeTrigger.removeAttribute('aria-haspopup')
         }
 
-        this.activeTrigger = visibleTrigger ?? triggers[0]
+        this.activeTrigger = trigger
 
         return this.activeTrigger
     },
